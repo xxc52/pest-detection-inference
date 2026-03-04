@@ -50,7 +50,7 @@ cd pest-detection-inference
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 unzip sample_images.zip
-python run_inference.py
+python3 run_inference.py
 ```
 
 각 카테고리 폴더에서 랜덤 1장을 추론하고, 결과 이미지는 `results/` 폴더에 저장됩니다.
