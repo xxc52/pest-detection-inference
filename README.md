@@ -19,35 +19,41 @@ pip install -r requirements.txt
 ## 파일 구성
 
 ```
-test_inference/
+pest-detection-inference/
 ├── best.pt            ← YOLOv8n 학습 모델 (mAP50 0.88)
 ├── run_inference.py   ← 추론 스크립트
 ├── requirements.txt   ← 의존성 패키지
 ├── dataset_info.md    ← 데이터셋 코드 체계 및 JSON 스키마
-└── README.md
+├── README.md
+└── sample_images/     ← 별도 제공 (sample_images.zip 압축 해제)
+    ├── VS_010_무화과_01_잎_017_흰가루병/   (3장)
+    ├── VS_010_무화과_01_잎_020_점무늬병/   (3장)
+    ├── VS_010_무화과_01_잎_999_정상/       (3장)
+    ├── VS_010_무화과_02_과실_017_흰가루병/ (3장)
+    ├── VS_010_무화과_02_과실_021_바구미/   (3장)
+    └── VS_010_무화과_02_과실_999_정상/     (3장)
+```
+
+## 샘플 이미지 준비
+
+`sample_images.zip`을 별도로 받아 레포 루트에 압축 해제합니다.
+
+```bash
+unzip sample_images.zip
 ```
 
 ## 실행
 
 ```bash
-cd test_inference
-source venv/bin/activate
+git clone https://github.com/xxc52/pest-detection-inference
+cd pest-detection-inference
+python3 -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+unzip sample_images.zip
 python run_inference.py
 ```
 
-결과 이미지는 `results/` 폴더에 저장됩니다.
-
-## 이미지 폴더 구성
-
-`run_inference.py`의 `FOLDERS` 리스트에 추론할 폴더명을 입력합니다.
-각 폴더에서 2장을 랜덤 샘플링하여 추론합니다.
-
-폴더명 규칙: `VS_{작물코드}_{부위코드}_{병해충코드}`
-
-| 예시 폴더명 | 의미 |
-|---|---|
-| `VS_010_무화과_01_잎_020_점무늬병` | 무화과 잎 점무늬병 |
-| `VS_010_무화과_02_과실_999_정상` | 무화과 과실 정상 |
+각 카테고리 폴더에서 랜덤 1장을 추론하고, 결과 이미지는 `results/` 폴더에 저장됩니다.
 
 코드 체계 상세는 [dataset_info.md](dataset_info.md) 참고
 

@@ -4,7 +4,7 @@ import json
 import random
 
 MODEL_PATH = "best.pt"
-IMAGE_ROOT = Path("..")
+IMAGE_ROOT = Path("sample_images")
 OUTPUT_DIR = Path("results")
 OUTPUT_DIR.mkdir(exist_ok=True)
 
@@ -12,9 +12,9 @@ FOLDERS = [
     "VS_010_무화과_01_잎_017_흰가루병",
     "VS_010_무화과_01_잎_020_점무늬병",
     "VS_010_무화과_01_잎_999_정상",
-    "VS_010_무화과_02_과실_017_흰가루병.zip",
+    "VS_010_무화과_02_과실_017_흰가루병",
     "VS_010_무화과_02_과실_021_바구미",
-    "VS_010_무화과_02_과실_999_정상.zip",
+    "VS_010_무화과_02_과실_999_정상",
 ]
 
 model = YOLO(MODEL_PATH)
@@ -25,7 +25,7 @@ print("=" * 60)
 for folder_name in FOLDERS:
     folder_path = IMAGE_ROOT / folder_name
     all_images = list(folder_path.glob("*.JPG"))
-    images = random.sample(all_images, min(2, len(all_images)))
+    images = random.sample(all_images, min(1, len(all_images)))
 
     print(f"\n[{folder_name}]")
     for img_path in images:
